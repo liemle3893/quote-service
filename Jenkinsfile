@@ -3,10 +3,15 @@
 pipeline {
 	agent any
 	stages {
-		stage('Test') {
+		stage('Build') {
+			agent {
+				docker {
+					image 'golang:1.13.0-stretch'
+				}
+			}
 			steps {
 				sh "mkdir -p build"
-				sh "go test -v 2>&1 | go-junit-report > build/report.xml"
+				sh "go build -mod=vendor"
 			}
 		}
 		stage('Package') {
