@@ -18,7 +18,7 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-						docker.build('liemlhd/america-election-quote').push('latest')
+						docker.build('saboteurkid/america-election-quote').push('latest')
 					}
 				}
 			}
