@@ -15,8 +15,10 @@ pipeline {
 		}
 		stage('Package') {
 			steps {
-				docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-					docker.build('liemlhd/america-election-quote').push('latest')
+				script {
+					docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
+						docker.build('liemlhd/america-election-quote').push('latest')
+					}
 				}
 			}
 		}
