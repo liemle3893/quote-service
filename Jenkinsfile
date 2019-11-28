@@ -26,7 +26,6 @@ pipeline {
 	}
 	post {
         always {
-            junit 'build/*.xml'
 			script {
 				msteams()
 			}
