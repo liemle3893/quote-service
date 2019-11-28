@@ -33,12 +33,14 @@ pipeline {
 		stage('Deploy') {
 			steps {
 				script {
+					// Verifu deployment
 					def userInput = input(
 						id: 'userInput', message: "Deploy?", parameters: [
 						[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Do you want to proceed?']
 					])
 					if(userInput) {
 						script {
+							// Deploykent
 							sh "nomad stop quote-service || true"
 							sh "nomad plan deployment/job.hcl || true"
 							sh "nomad run deployment/job.hcl"
@@ -53,6 +55,7 @@ pipeline {
 	post {
         always {
 			script {
+				junit "build/*.xml"
 				msteams()
 			}
         }
