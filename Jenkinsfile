@@ -23,6 +23,23 @@ pipeline {
 				}
 			}
 		}
+		stage('Deploy') {
+			steps {
+				def userInput = input(
+					id: 'userInput', message: "Deploy?", parameters: [
+					[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Do you want to proceed?']
+				])
+				if(userInput) {
+					script {
+						sh "nomad stop quote-service"
+						sh "nomad plan deployment/job.hcl"
+						sh "nomad run deployment/job.hcl"
+					}
+				} else {
+					echo "Deployment aborted"
+				}
+			}
+		}
 	}
 	post {
         always {
