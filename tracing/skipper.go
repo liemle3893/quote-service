@@ -8,7 +8,7 @@ import (
 // NewPathSkipper create new skipper for <p>path</p>
 func NewPathSkipper(path string) middleware.Skipper {
 	return func(c echo.Context) bool {
-		skip := "/metrics" == c.Path()
+		skip := path == c.Path()
 		return skip
 	}
 }

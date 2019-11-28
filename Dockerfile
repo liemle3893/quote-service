@@ -4,7 +4,7 @@ ENV GO111MODULE=on
 # Build
 WORKDIR /build
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -mod=vendor -o /app main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -installsuffix cgo -mod=vendor -o /app main.go
 
 # Main image
 FROM scratch
