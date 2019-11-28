@@ -2,6 +2,11 @@
 
 pipeline {
 	agent any
+	environment {
+		MAJOR_VERSION = "1"
+		MINOR_VERSION = "0"
+		PATCH_VERSION = "${currentBuild.number}"
+	}
 	stages {
 		stage('Build') {
 			agent {
@@ -18,7 +23,9 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-						docker.build('saboteurkid/america-election-quote').push('latest')
+						image = docker.build('saboteurkid/america-election-quote')
+						image.push("${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}")
+						image.push('latest')
 					}
 				}
 			}
