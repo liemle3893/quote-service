@@ -32,8 +32,8 @@ pipeline {
 					])
 					if(userInput) {
 						script {
-							sh "nomad stop quote-service"
-							sh "nomad plan deployment/job.hcl"
+							sh "nomad stop quote-service || true"
+							sh "nomad plan deployment/job.hcl || true"
 							sh "nomad run deployment/job.hcl"
 						}
 					} else {
