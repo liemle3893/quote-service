@@ -1,4 +1,5 @@
 job "quote-service" {
+  datacenters = ["dc1"]
   group "quote" {
     task "server" {
       driver = "docker"
