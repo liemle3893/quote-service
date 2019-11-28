@@ -86,7 +86,7 @@ func main() {
 		return c.String(http.StatusOK, quote)
 	})
 	// Start server
-	e.Logger.Fatal(e.Start(":" + getEnvWithDefault("PORT", "1324")))
+	e.Logger.Fatal(e.Start(":" + getEnvWithDefault("PORT", "1323")))
 }
 
 func getEnvWithDefault(env, deflt string) string {
